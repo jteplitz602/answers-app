@@ -25,12 +25,16 @@ app.use(express.static(root));
 
 // Routes
 app.use('/', (req, res) => {
-  res.render('index', { App, providers: [
-    ROUTER_PROVIDERS,
-    SERVER_LOCATION_PROVIDERS,
-    provide(APP_BASE_HREF, {useValue: `http://localhost:3000${req.baseUrl}`}),
-    SHARED_PROVIDERS
-  ] });
+  res.render('index', {
+    App,
+    providers: [
+      ROUTER_PROVIDERS,
+      SERVER_LOCATION_PROVIDERS,
+      provide(APP_BASE_HREF, {useValue: `http://localhost:3000${req.baseUrl}`}),
+      SHARED_PROVIDERS
+    ],
+    preboot: true
+  });
 });
 
 // Server
